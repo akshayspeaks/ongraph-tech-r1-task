@@ -15,8 +15,24 @@ class WelcomeLoadedView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(config.title),
-          Text(config.description),
+          Text(
+            config.title,
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            config.description,
+            style: TextStyle(
+              fontSize: 20,
+            ),
+            textAlign: TextAlign.center,
+          ),
           SizedBox(
             height: 50,
           ),

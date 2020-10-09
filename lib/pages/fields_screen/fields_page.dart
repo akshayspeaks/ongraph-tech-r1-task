@@ -23,11 +23,9 @@ class _FieldsPageState extends State<FieldsPage> {
   @override
   @override
   Widget build(BuildContext context) {
-    var ob = widget.fieldListConfig.formFieldList[1];
-    if (ob is DropdownField) print(ob.choices.toString());
     return Scaffold(
       appBar: AppBar(),
-      body: _buildFieldsBody(context),
+      body: SingleChildScrollView(child: _buildFieldsBody(context)),
     );
   }
 

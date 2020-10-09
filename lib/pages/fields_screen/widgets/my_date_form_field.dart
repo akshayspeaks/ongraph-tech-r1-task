@@ -12,7 +12,13 @@ class MyDateFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      Text(title),
+      Text(
+        title,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+        textAlign: TextAlign.center,
+      ),
       DateTimeField(
         format: format,
         onShowPicker: (context, currentValue) {

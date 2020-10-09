@@ -16,7 +16,13 @@ class _MyStarRatingFieldState extends State<MyStarRatingField> {
     return Center(
         child: Column(
       children: [
-        Text(widget.title),
+        Text(
+          widget.title,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+        ),
         SizedBox(
           height: 5,
         ),

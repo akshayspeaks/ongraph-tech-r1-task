@@ -16,7 +16,13 @@ class _MyYesNoWidgetState extends State<MyYesNoWidget> {
     return Center(
         child: Column(
       children: [
-        Text(widget.title),
+        Text(
+          widget.title,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+        ),
         SizedBox(
           height: 8,
         ),

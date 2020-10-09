@@ -18,31 +18,50 @@ class ThankYouPage extends StatelessWidget {
           body: Container(
               child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(config.title),
+                Text(
+                  config.title,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
                 SizedBox(
                   height: 50,
                 ),
-                config.showButton
-                    ? RaisedButton(
-                        child: Text(config.buttonText),
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => FieldsPage(
-                                        appConfig: appConfig,
-                                      )));
-                        })
-                    : Container(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _buildBottomButtons(context),
+                )
               ],
             ),
           ))),
     );
   }
 
-  Future<bool> _onWillPop(BuildContext context) async {
+  List<Widget> _buildBottomButtons(BuildContext context) {
+    List<Widget> bottomRowWidgets = [];
+    if (config.showButton)
+      bottomRowWidgets.add(RaisedButton(
+          child: Text(config.buttonText),
+          onPressed: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => FieldsPage(
+                          appConfig: appConfig,
+                        )));
+          }));
+    if (config.shareIcons) {
+      bottomRowWidgets
+          .add(IconButton(icon: Icon(Icons.share), onPressed: () {}));
+    }
+    return bottomRowWidgets;
+  }
+
+  Future<void> _onWillPop(BuildContext context) async {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
