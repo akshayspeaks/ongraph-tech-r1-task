@@ -5,16 +5,23 @@ import 'package:ongraph_tech_r1_task/pages/fields_screen/widgets/my_star_rating_
 import 'package:ongraph_tech_r1_task/pages/fields_screen/widgets/my_text_form_field.dart';
 import 'package:ongraph_tech_r1_task/pages/thank_you_screen/thank_you_page.dart';
 
-class FieldsPage extends StatelessWidget {
+class FieldsPage extends StatefulWidget {
   final AppConfig appConfig;
   final FieldConfig fieldListConfig;
   FieldsPage({Key key, this.appConfig})
       : fieldListConfig = appConfig.fieldConfig,
         super(key: key);
+
+  @override
+  _FieldsPageState createState() => _FieldsPageState();
+}
+
+class _FieldsPageState extends State<FieldsPage> {
+  final _formKey = GlobalKey<FormState>();
   @override
   @override
   Widget build(BuildContext context) {
-    var ob = fieldListConfig.formFieldList[1];
+    var ob = widget.fieldListConfig.formFieldList[1];
     if (ob is DropdownField) print(ob.choices.toString());
     return Scaffold(
       appBar: AppBar(),
@@ -25,17 +32,19 @@ class FieldsPage extends StatelessWidget {
   Widget _buildFieldsBody(BuildContext context) {
     return SingleChildScrollView(
       child: Form(
+        key: _formKey,
         child: Column(children: <Widget>[
           ..._getFieldChildrenFromConfig(),
           RaisedButton(
               child: Text('Sumbit'),
               onPressed: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ThankYouPage(
-                              appConfig: appConfig,
-                            )));
+                if (_formKey.currentState.validate())
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ThankYouPage(
+                                appConfig: widget.appConfig,
+                              )));
               })
         ]),
       ),
@@ -43,7 +52,7 @@ class FieldsPage extends StatelessWidget {
   }
 
   List<Widget> _getFieldChildrenFromConfig() {
-    return fieldListConfig.formFieldList.map((formField) {
+    return widget.fieldListConfig.formFieldList.map((formField) {
       var fft = formField.runtimeType;
       switch (fft) {
         case ShortTextField:
