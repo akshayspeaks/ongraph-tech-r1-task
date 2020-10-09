@@ -31,6 +31,7 @@ dependencies:
   freezed_annotation: ^0.12.0
 
   flutter_rating_bar: ^3.0.1+1 #rating bar
+  datetime_picker_formfield: ^1.0.0
 
   # service locators
   injectable: ^1.0.4

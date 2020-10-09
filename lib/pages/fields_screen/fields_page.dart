@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ongraph_tech_r1_task/models/app_config.dart';
+import 'package:ongraph_tech_r1_task/pages/fields_screen/widgets/my_date_form_field.dart';
 import 'package:ongraph_tech_r1_task/pages/fields_screen/widgets/my_dropdown_field.dart';
 import 'package:ongraph_tech_r1_task/pages/fields_screen/widgets/my_star_rating_field.dart';
 import 'package:ongraph_tech_r1_task/pages/fields_screen/widgets/my_text_form_field.dart';
+import 'package:ongraph_tech_r1_task/pages/fields_screen/widgets/my_yes_no_field.dart';
 import 'package:ongraph_tech_r1_task/pages/thank_you_screen/thank_you_page.dart';
 
 class FieldsPage extends StatefulWidget {
@@ -113,6 +115,15 @@ class _FieldsPageState extends State<FieldsPage> {
             steps: (formField as RatingField).steps,
             title: formField.title,
           );
+
+        case DateField:
+          return MyDateFormField(
+            title: formField.title,
+            structure: (formField as DateField).structure,
+          );
+
+        case YesNoField:
+          return MyYesNoWidget(title: formField.title);
 
         default:
           return Container();

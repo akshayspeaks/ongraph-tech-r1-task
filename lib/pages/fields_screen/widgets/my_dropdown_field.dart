@@ -34,7 +34,7 @@ class _MyDropdownFieldState extends State<MyDropdownField> {
   void initState() {
     super.initState();
     _dropdownMenuItems = buildDropDownMenuItems(_itemList);
-    // _selectedItem = _dropdownMenuItems[0].value;
+    _selectedItem = _dropdownMenuItems[0].value;
   }
 
   @override
